@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Toy Store</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+
+  <script src="./js/Buttons.js"></script>
+  <script src="./js/handlerMarker.js"></script>
+ 
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <!-- Local StyleSheet -->
+  <link rel="stylesheet" href="./style.css"/>
+  <!--Marker Handler Src-->
+ 
+
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene 
+    embedded vr-mode-ui="enabled: false"     
+    arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;debugUIEnabled: false;"
+    gesture-detector
+    create-buttons>
+
+    
+
+    <!-- Camera -->
+    <a-entity camera></a-entity>
+
+    <a-assets>
+      <a-asset-item id="tank-model" src="./assets/tank/scene.gltf" ></a-asset-item>
+    </a-assets>
+    
+   <a-marker id="tank-marker" type="pattern" url="assets/images/pattern-tank.patt" cursor="rayOrigin: mouse"
+    markerhandler>
+      
+      <a-entity id="tank-3D-model" position="0 -6 -3" scale="0.01 0.01 0.01" rotation="-90 0 0"
+        gltf-model="#tank-model"
+        gesture-handler>
+      </a-entity>
+
+      <!-- tank -->
+      <a-plane position="0.8 0 0" width="2.1" height="1.5" rotation="-90 0 0" color="lightsalmon">
+        <a-plane position="0 0.7 0.1" width="2.1" height="0.3" rotation="0 0 0" color="palevioletred">
+          <a-entity position="0 0 0.1" rotation="0 0 0"
+            text="font:monoid;value:TANK;color:#290149;width: 1.8;height:1;align:center;"></a-entity>
+        </a-plane>
+
+        <a-entity position="-0.03 0 0.1" rotation="0 0 0"
+          text="color: #6b011f; align: center; width: 2; font: dejavu;
+          value: A tank is an armoured fighting vehicle intended as a primary offensive weapon in front-line ground combat.This tank toy is made of safe and nontoxic plastic material, ecofriendly and durable for your children to play.The vehicle easily climbs over uneven surfaces and tumbles and balances itself when needed.">
+
+        </a-entity>
+          <a-entity
+              position="-0.75 -0.6 0.1"
+              rotation="0 0 0"
+              text="color: #290149; align: center; width: 2;height:5; font: aileronsemibold;
+                value:AGE : 8-10yrs"
+            ></a-entity>
+      </a-plane>
+    </a-marker>
+
+    
+  </a-scene>
+
+  <!-- Button Main Div -->
+  <div id="button-div"></div>
+</body>
+
+</html>
